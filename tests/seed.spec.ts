@@ -5,4 +5,3 @@ test.describe('Test group', () => {
     // generate code here.
   });
 });
-//minor change
