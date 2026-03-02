@@ -1,13 +1,23 @@
 pipeline {
     agent any
 
+    triggers {
+        cron('H/5 * * * *')
+    }
+
     stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/GuruGd29/PlaywrightAgent'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
                 sh '''
                 export PATH="/opt/homebrew/bin:$PATH"
-                npm ci
+                npm install
                 npx playwright install
                 '''
             }
@@ -21,11 +31,11 @@ pipeline {
                 '''
             }
         }
-    }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+        stage('Generate HTML Report') {
+            steps {
+                archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+            }
         }
     }
 }
