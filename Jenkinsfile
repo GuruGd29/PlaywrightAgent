@@ -9,7 +9,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/GuruGd29/PlaywrightAgent'
+                git branch: 'main', url: 'https://github.com/GuruGd29/PlaywrightAgent'
             }
         }
 
