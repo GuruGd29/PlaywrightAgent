@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                cleanWs()
-                git 'https://github.com/GuruGd29/PlaywrightAgent'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh '''
